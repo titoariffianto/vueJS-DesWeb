@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <UserLogin v-if="!isLoggedIn" @loginSuccess="isLoggedIn = true" /><!-- SOAL: tambahkan tag html sebelum directive berupa variabel yang di import di bagian script-->
+    <UserDashboard v-else @logout="isLoggedIn = false" /> <!-- SOAL: tambahkan tag html sebelum directive berupa variabel yang di import di bagian script-->
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import UserDashboard from './components/UserDashboard.vue';
+import UserLogin from './components/UserLogin.vue';
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    UserDashboard,
+    UserLogin
+  },
+  data() {
+    return {
+      isLoggedIn: false
+    };
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  font-family: Arial, sans-serif;
 }
 </style>
